@@ -18,4 +18,4 @@ Docker: This is used to manage containers and images in instances from AWS
 Kubernetes: This was used to manage and automate the deployment of the microservice containerized application
 Ansible served as an IaC for remote servers where are the Jenkins master and slave and also two worker nodes in Eks cluster.
 Helm used to package the microservice application and set it up on EKS Cluster
-Version Control for Jenkins CI/CD pipeline
+Version Control for Jenkins CI/CD pipeline.
