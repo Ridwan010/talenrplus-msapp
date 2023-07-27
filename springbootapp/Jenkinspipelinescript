@@ -1,0 +1,42 @@
+node ("slave") {
+  def mvnHome = tool 'Maven3'
+  stages {
+        stage('Checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Ridwan010/talentplus-msapp.git']])
+            } 
+        }
+        stage ("Build JAR") {
+            steps {
+                sh "mvn -f springbootapp/pom.xml clean install"
+            }
+        }
+        stage ("Build Image") {
+            steps {
+                script {
+                    'docker.build - t ridwan010/spring-boot-web'
+                }
+            }
+        }
+        stage ("Push Image to my Hub") {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'mydockerhub-pass' variable 'dockerhubpass')]) {
+                    sh 'docker login -u ridwan010 -p ${dockerhubpass}'
+                    sh "docker push ridwan010/spring-boot-web:latest"
+                    
+                }
+            }
+        }
+        stage ("Helm package ms-app") {
+            steps {
+                    sh "helm package talentplushelm"
+           }
+        }
+        stage ("Deploy Microservice app") {
+            steps {
+                    sh "helm upgrade edition1 --install talentplushelm-0.1.0.tgz --set image.tag = $BUILD_NUMBER"
+                }
+            }
+    }
+}  
