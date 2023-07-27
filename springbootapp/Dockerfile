@@ -1,7 +1,4 @@
-# For Java 8, try this
-# FROM openjdk:8-jdk-alpine
-
-# For Java 11, try this
+# For Java 13 installed on jenkins-slave(jenkins slave node)
 FROM opt:jdk-13.0.1
 
 # Refer to Maven build -> finalName
