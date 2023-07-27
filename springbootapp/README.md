@@ -26,9 +26,9 @@ Springboot
 # Breif Explanation on TechStack
 Aws was used to launch instances which served as a remote server for installation of the AmazonEKS, Jenkins, Docker, Ansible, Helm.
 
-AmazonEKS was used ton set of Kubernetes cluster with two worker nodes
+AmazonEKS was used ton set of Kubernetes cluster with two worker nodes.
 
-Docker: This is used to manage containers and images in instances from AWS
+Docker: This is used to manage containers and images in instances from AWS.
 
 Kubernetes: This was used to manage and automate the deployment of the microservice containerized application
 
@@ -38,4 +38,4 @@ Helm used to package the microservice application and set it up on EKS Cluster
 
 Github served Version Control for Jenkins CI/CD pipeline.
 
-Jenkins: comprises of the jenkins-master and the jenkins-slave. 
+Jenkins: comprises of the jenkins-master and the jenkins-slave. Jenkins-slave was used as a CI/CD pipeline for the deployment of microservice application after it has been packaged by Helm.
