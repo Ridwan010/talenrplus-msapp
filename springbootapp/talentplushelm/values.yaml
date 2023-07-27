@@ -5,7 +5,7 @@
 replicaCount: 2
 
 image:
-  repository: ridwan010/talentplus-msapp
+  repository: ridwan010/spring-boot-web
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
