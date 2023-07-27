@@ -17,10 +17,12 @@
 
 # Ex 2: A collection of hosts belonging to the 'webservers' group:
 
-[servers]
-server1 ansible_host=203.0.113.111
-server2 ansible_host=203.0.113.112
-server3 ansible_host=203.0.113.113
+[control_plane]
+control1 ansible_host=13.53.200.103 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+[workers]
+worker1 ansible_host=16.170.157.129 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/id_rsa
+worker2 ansible_host=172.31.20.201  ansible_user=jenkins ansible_ssh_private_key_file=~/.ssh/id_rsa
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
