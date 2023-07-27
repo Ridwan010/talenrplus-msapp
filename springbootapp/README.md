@@ -17,6 +17,7 @@ Kubernetes
 Anisble
 
 Helm
+Github
 
 Springboot
 
@@ -35,4 +36,6 @@ Ansible served as an IaC for remote servers where are the Jenkins master and sla
 
 Helm used to package the microservice application and set it up on EKS Cluster
 
-Version Control for Jenkins CI/CD pipeline.
+Github served Version Control for Jenkins CI/CD pipeline.
+
+Jenkins: comprises of the jenkins-master and the jenkins-slave. 
