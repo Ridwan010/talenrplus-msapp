@@ -6,9 +6,9 @@ Code base for the deployment of microservice application given by Talentplus as 
 # Tech Stack Used For Successful Deployment Of The MicroService Application
 AWS
 
-AmazonEKS
+#AmazonEKS
 
-Jenkins
+#Jenkins
 
 Docker
 
