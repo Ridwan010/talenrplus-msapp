@@ -1,33 +1,40 @@
-node ("slave") {
-  def mvnHome = tool 'Maven3'
-  stages {
+pipeline {
+    agent any
+    environment {
+        PATH= "/opt/apache-maven-3.6.3/bin:$PATH"
+    }
+    stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Ridwan010/talentplus-msapp.git']])
-            } 
-        }
-        stage ("Build JAR") {
-            steps {
-                sh "mvn -f springbootapp/pom.xml clean install"
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Ridwan010/talentplus-msapp.git']])
             }
         }
-        stage ("Build Image") {
+    
+        stage ("Build Jar") {
+            steps {
+                sh "mvn -f MyMicroserviceApp/pom.xml clean install"
+            }
+        }
+        
+        stage ("Build Docker Image") {
             steps {
                 script {
-                    'docker.build - t ridwan010/spring-boot-web'
+                    sh 'docker build ridwan010/talentplus-msapp'
                 }
             }
         }
-        stage ("Push Image to my Hub") {
+        
+        stage ("Push docker Image") {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'mydockerhub-pass' variable 'dockerhubpass')]) {
+                    withCredentials([string(credentialsId: 'mydockerhub-pass', variable: 'dockerhubpass')]) {
                     sh 'docker login -u ridwan010 -p ${dockerhubpass}'
-                    sh "docker push ridwan010/spring-boot-web:latest"
-                    
+}
+                    sh 'docker push'
                 }
-            }
+            }    
         }
+        
         stage ("Helm package ms-app") {
             steps {
                     sh "helm package talentplushelm"
@@ -38,5 +45,7 @@ node ("slave") {
                     sh "helm upgrade edition1 --install talentplushelm-0.1.0.tgz --set image.tag = $BUILD_NUMBER"
                 }
             }
+
+
     }
-}  
+}
