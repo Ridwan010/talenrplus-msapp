@@ -1,4 +1,4 @@
-FROM openjdk:13
+FROM openjdk:11
 EXPOSE 8080 
 ADD target/MyMicroserviceApp.jar MyMicroserviceApp.jar
 ENTRYPOINT ["java","-jar","MyMicroserviceApp.jar"]
