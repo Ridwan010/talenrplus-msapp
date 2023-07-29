@@ -1,5 +1,5 @@
 # For Java 13 installed on jenkins-slave(jenkins slave node)
-FROM openjdk:13.0.1
+FROM openjdk:13
 
 # Refer to Maven build -> finalName
 ARG JAR_FILE=target/MyMicroserviceApp.jar
